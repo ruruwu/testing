@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <title>Reverse Tabnabbing QA Test</title>
+</head>
+
+<body>
+  <h1>Reverse Tabnabbing QA Test</h1>
+
+  <p id="status">尚未測試</p>
+
+  <button onclick="runTest()">
+    測試是否可以控制原分頁
+  </button>
+
+  <script>
+    function runTest() {
+      const status = document.getElementById("status");
+
+      if (window.opener) {
+        status.textContent =
+          "⚠️ window.opener 存在，準備修改原分頁";
+
+        window.opener.location.href =
+          "https://example.com/?qa=reverse-tabnabbing";
+      } else {
+        status.textContent =
+          "✅ window.opener 為 null，無法控制原分頁";
+      }
+    }
+  </script>
+</body>
+</html>
